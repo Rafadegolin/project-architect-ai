@@ -1,6 +1,6 @@
 {
-  "name": "software-architecture-analyser",
-  "displayName": "software-architecture-analyser",
+  "name": "software-architecture-analyzer",
+  "displayName": "Software Architecture Analyzer",
   "description": "Analisa arquitetura de projetos utilizando LLM",
   "icon": "icon.png",
   "publisher": "RafaelDegolindaSilva",
@@ -18,7 +18,7 @@
     "documentation",
     "code-analysis"
   ],
-  "version": "0.0.1",
+  "version": "1.0.3",
   "engines": {
     "vscode": "^1.106.2"
   },

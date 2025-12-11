@@ -93,7 +93,7 @@ Contribuições são bem-vindas! Veja como você pode ajudar:
 
 ## 📄 Licença
 
-MIT © 2025 [Seu Nome]
+MIT © 2025 Rafael Degolin da Silva
 
 ## 🔗 Links
 
