@@ -111,7 +111,40 @@ Analisa suas mudanças no Git e gera automaticamente mensagens de commit seguind
 - 🤖 **Análise com IA**: Utiliza GPT-4o para análise profunda
 - 📊 **Trechos de Código Reais**: Mostra exemplos do seu projeto
 - ⚡ **Rápido e Eficiente**: Análise completa em poucos segundos
-- 🎯 **Suporte Multi-linguagem**: TypeScript, JavaScript, Python, Java, Go, Rust e mais
+- 🎯 **Suporte Multi-linguagem**: TypeScript, JavaScript, Python, Java, Go, Rust, **C/C++, Arduino (.ino)** e mais
+
+#### 📁 Tipos de Arquivo Suportados
+
+A extensão analisa automaticamente os seguintes tipos de arquivo:
+
+**🌐 Web & Backend:**
+- TypeScript/JavaScript: `.ts`, `.tsx`, `.js`, `.jsx`
+- Python: `.py`
+- Java: `.java`
+- Go: `.go`
+- Rust: `.rs`
+
+**⚡ Embedded & IoT:**
+- C: `.c`, `.h`
+- C++: `.cpp`, `.cc`, `.cxx`, `.hpp`, `.hh`
+- Arduino: `.ino` (Arduino Sketches)
+
+**📋 Configuração & Documentação:**
+- JSON, YAML: `.json`, `.yml`, `.yaml`
+- SQL: `.sql`
+- Prisma: `.prisma`
+- Markdown: `.md`
+
+**🛠️ Build & Config Files Detectados:**
+- Node.js: `package.json`, `tsconfig.json`
+- Python: `requirements.txt`
+- Go: `go.mod`
+- Rust: `Cargo.toml`
+- Java: `pom.xml`, `.gradle`
+- **C/C++/Embedded**: `CMakeLists.txt`, `Makefile`, `.mk`
+- **Arduino/PlatformIO**: `platformio.ini`, `arduino.json`
+- Docker: `Dockerfile`, `docker-compose.yml`
+- Environment: `.env.example`
 
 ## 🚀 Como Usar
 
@@ -195,7 +228,44 @@ refactor(components): extract reusable Button component
 Moved Button logic to separate component for better
 code reusability and maintainability.
 ```
+
+#### 💡 Exemplos Práticos: Projetos Arduino/ESP32
+
+A extensão agora suporta **análise completa de projetos embarcados**! Veja alguns exemplos:
+
+**📟 Projeto Arduino Blink:**
+```
+project-arduino-blink/
+├── src/
+│   └── main.ino          // Detectado automaticamente
+├── lib/
+│   └── customLib.h       // Headers analisados
+└── platformio.ini        // Config incluída no relatório
+```
+
+**🌐 Projeto ESP32 WiFi:**
+```
+esp32-weather-station/
+├── src/
+│   ├── main.cpp          // Entry point identificado
+│   ├── wifi_manager.cpp
+│   └── sensor_reader.cpp
+├── include/
+│   ├── wifi_manager.h    // Headers detectados
+│   └── config.h
+├── platformio.ini
+└── CMakeLists.txt        // Build config analisado
+```
+
+A análise técnica irá identificar:
+- ✅ Bibliotecas Arduino/ESP utilizadas (WiFi.h, ESP8266WiFi.h, etc.)
+- ✅ Padrões de código embarcado (setup(), loop(), interrupts)
+- ✅ **Vulnerabilidades específicas**: buffer overflow, string operations inseguras
+- ✅ **Otimizações de memória**: uso de PROGMEM, F() macro
+- ✅ **Boas práticas IoT**: power management, watchdog timers
+
 ---
+
 
 ## ⚙️ Configuração
 
@@ -256,6 +326,7 @@ Contribuições são bem-vindas! Veja como você pode ajudar:
 - [x] ✅ Geração inteligente de commits (Conventional Commits)
 - [x] ✅ Análises multilíngues (PT-BR e EN)
 - [x] ✅ Análise de segurança profunda
+- [x] ✅ Suporte para C/C++/Arduino (sistemas embarcados e IoT)
 - [ ] Suporte para Claude (Anthropic)
 - [ ] Suporte para modelos locais (Ollama)
 - [ ] Exportar relatório em PDF

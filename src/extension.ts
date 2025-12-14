@@ -79,7 +79,7 @@ async function analyzeProject(mode: AnalysisMode) {
             mode.includes("en") ? "Scanning files..." : "Escaneando arquivos...",
         });
         const files = await vscode.workspace.findFiles(
-          "**/*.{ts,tsx,js,jsx,py,java,go,rs,json,md,yml,yaml,sql,prisma}",
+          "**/*.{ts,tsx,js,jsx,py,java,go,rs,json,md,yml,yaml,sql,prisma,c,cpp,cc,cxx,h,hpp,hh,ino}",
           "{**/node_modules/**,**/dist/**,**/build/**,**/.next/**,**/venv/**,**/__pycache__/**}"
         );
 
@@ -596,7 +596,12 @@ async function buildProjectStructure(files: vscode.Uri[]): Promise<string> {
       name.endsWith(".gradle") ||
       name.includes("requirements.txt") || // Python
       name.includes("go.mod") || // Go
-      name.includes("cargo.toml") // Rust
+      name.includes("cargo.toml") || // Rust
+      name.includes("platformio.ini") || // PlatformIO
+      name.includes("arduino.json") || // Arduino config
+      name.includes("cmake") || // CMake
+      name.includes("makefile") || // Makefile
+      name.endsWith(".mk") // Make includes
     );
   });
 
@@ -616,7 +621,7 @@ async function buildProjectStructure(files: vscode.Uri[]): Promise<string> {
   structure += "## Code Samples (for deep analysis)\n\n";
   const codeFiles = files.filter((f) => {
     const name = f.path.toLowerCase();
-    const fileName = f.path.split(/[\\/]/).pop()?.toLowerCase() || "";
+    const fileName = f.path.split(/[\\\/]/).pop()?.toLowerCase() || "";
     return (
       // Controllers, Routes, API
       name.includes("/controller") ||
@@ -641,7 +646,14 @@ async function buildProjectStructure(files: vscode.Uri[]): Promise<string> {
       fileName === "app.ts" ||
       fileName === "app.js" ||
       fileName === "server.ts" ||
-      fileName === "server.js"
+      fileName === "server.js" ||
+      // Arduino/Embedded specific
+      fileName === "main.c" ||
+      fileName === "main.cpp" ||
+      fileName.endsWith(".ino") ||
+      name.includes("/src/") || // Common Arduino/embedded folder
+      name.includes("/lib/") || // Arduino libraries
+      name.includes("/include/") // C/C++ headers
     );
   });
 
